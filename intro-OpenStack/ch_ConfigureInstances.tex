@@ -1,0 +1,393 @@
+\chapter{Configure access and security for instances}
+
+Before you launch an \gls{instance}, you should add security group rules to
+enable users to ping and use SSH to connect to the instance. Security
+groups are sets of IP filter rules that define networking access and are
+applied to all instances within a project. To do so, you either add
+rules to the default security group
+{\emph{Add a rule to the default security group}\ref{add-a-rule-to-the-default-security-group}} or add a new security group with
+rules.
+
+Key pairs are SSH credentials that are injected into an instance when it
+is launched. To use key pair injection, the image that the instance is
+based on must contain the \textbf{cloud-init} package. Each project
+should have at least one key pair. For more information, see the section
+{\emph{Add a key pair}}.
+
+If you have generated a key pair with an external tool, you can import
+it into \gls{OpenStack}. The key pair can be used for multiple instances that
+belong to a project. For more information, see the section
+{\emph{Import a key pair}}.
+
+~
+
+Note
+
+A key pair belongs to an individual user, not to a project. To share a
+key pair across multiple users, each user needs to import that key pair.
+
+When an instance is created in \gls{OpenStack}, it is automatically assigned a
+fixed IP address in the network to which the instance is assigned. This
+IP address is permanently associated with the instance until the
+instance is terminated. However, in addition to the fixed IP address, a
+floating IP address can also be attached to an instance. Unlike fixed IP
+addresses, floating IP addresses are able to have their associations
+modified at any time, regardless of the state of the instances involved.
+
+\strong{Add a rule to the default security group}\label{add-a-rule-to-the-default-security-group}
+
+This procedure enables SSH and ICMP (ping) access to instances. The
+rules apply to all instances within a given project, and should be set
+for every project unless there is a reason to prohibit SSH or ICMP
+access to the instances.
+
+This procedure can be adjusted as necessary to add additional security
+group rules to a project, if your cloud requires them.
+
+~
+
+Note
+
+When adding a rule, you must specify the protocol used with the
+destination port or source port.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{quote}
+  Log in to the \gls{OpenStack Dashboard}.
+  \end{quote}
+\item
+  \begin{quote}
+  Select the appropriate project from the drop down menu at the top
+  left.
+  \end{quote}
+\item
+  \begin{quote}
+  On the Project tab, open the Network tab. The Security Groups tab
+  shows the security groups that are available for this project.
+  \end{quote}
+\item
+  \begin{quote}
+  Select the default security group and click Manage Rules.
+  \end{quote}
+\item
+  \begin{quote}
+  To allow SSH access, click Add Rule.
+  \end{quote}
+\item
+  \begin{quote}
+  In the Add Rule dialog box, enter the following values:
+  \end{quote}
+
+  \begin{itemize}
+  \item
+    \begin{quote}
+    \textbf{Rule}: \textbf{SSH}
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Remote}: \textbf{CIDR}
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{CIDR}: \textbf{0.0.0.0/0}
+    \end{quote}
+  \end{itemize}
+\end{enumerate}
+
+\begin{quote}
+~
+
+Note
+
+To accept requests from a particular range of IP addresses, specify the
+IP address block in the CIDR box.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{quote}
+  Click Add.
+  \end{quote}
+\end{enumerate}
+
+\begin{quote}
+Instances will now have SSH port 22 open for requests from any IP address.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{quote}
+  To add an ICMP rule, click Add Rule.
+  \end{quote}
+\item
+  \begin{quote}
+  In the Add Rule dialog box, enter the following values:
+  \end{quote}
+
+  \begin{itemize}
+  \item
+    \begin{quote}
+    \textbf{Rule}: \textbf{All ICMP}
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Direction}: \textbf{Ingress}
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Remote}: \textbf{CIDR}
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{CIDR}: \textbf{0.0.0.0/0}
+    \end{quote}
+  \end{itemize}
+\item
+  \begin{quote}
+  Click Add.
+  \end{quote}
+\end{enumerate}
+
+\begin{quote}
+Instances will now accept all incoming ICMP packets.
+\end{quote}
+
+\strong{Add a key pair}\label{add-a-key-pair}
+
+Create at least one key pair for each project.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{quote}
+  Log in to the \gls{OpenStack Dashboard}.
+  \end{quote}
+\item
+  \begin{quote}
+  Select the appropriate project from the drop down menu at the top
+  left.
+  \end{quote}
+\item
+  \begin{quote}
+  On the Project tab, open the Compute tab.
+  \end{quote}
+\item
+  \begin{quote}
+  Click the Key Pairs tab, which shows the key pairs that are available
+  for this project.
+  \end{quote}
+\item
+  \begin{quote}
+  Click Create Key Pair.
+  \end{quote}
+\item
+  \begin{quote}
+  In the Create Key Pair dialog box, enter a name for your key pair, and
+  click Create Key Pair.
+  \end{quote}
+\item
+  \begin{quote}
+  Respond to the prompt to download the key pair.
+  \end{quote}
+\end{enumerate}
+
+\strong{Import a key pair}\label{import-a-key-pair}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{quote}
+  Log in to the \gls{OpenStack Dashboard}.
+  \end{quote}
+\item
+  \begin{quote}
+  Select the appropriate project from the drop down menu at the top
+  left.
+  \end{quote}
+\item
+  \begin{quote}
+  On the Project tab, open the Compute tab.
+  \end{quote}
+\item
+  \begin{quote}
+  Click the Key Pairs tab, which shows the key pairs that are available
+  for this project.
+  \end{quote}
+\item
+  \begin{quote}
+  Click Import Key Pair.
+  \end{quote}
+\item
+  \begin{quote}
+  In the Import Key Pair dialog box, enter the name of your key pair,
+  copy the public key into the Public Key box, and then click Import Key
+  Pair.
+  \end{quote}
+\item
+  \begin{quote}
+  Save the \textbf{*.pem} file locally.
+  \end{quote}
+\item
+  \begin{quote}
+  To change its permissions so that only you can read and write to the
+  file, run the following command:
+  \end{quote}
+\item
+  \begin{quote}
+  \$ chmod 0600 yourPrivateKey.pem
+  \end{quote}
+\end{enumerate}
+
+\begin{quote}
+~
+
+Note
+
+If you are using the \gls{OpenStack Dashboard} from a Windows computer, use PuTTYgen to
+load the \textbf{*.pem} file and convert and save it as \textbf{*.ppk}.
+For more information see the
+\href{https://winscp.net/eng/docs/ui_puttygen}{\emph{WinSCP web page for
+PuTTYgen}}.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{quote}
+  To make the key pair known to SSH, run the \textbf{ssh-add} command.
+  \end{quote}
+\item
+  \begin{quote}
+  \$ ssh-add yourPrivateKey.pem
+  \end{quote}
+\end{enumerate}
+
+The Compute database registers the public key of the key pair.
+
+The \gls{OpenStack Dashboard} lists the key pair on the Key Pairs tab.
+
+\strong{Allocate a floating IP address to an instance}\label{allocate-a-floating-ip-address-to-an-instance}
+
+When an instance is created in \gls{OpenStack}, it is automatically assigned a
+fixed IP address in the network to which the instance is assigned. This
+IP address is permanently associated with the instance until the
+instance is terminated.
+
+However, in addition to the fixed IP address, a floating IP address can
+also be attached to an instance. Unlike fixed IP addresses, floating IP
+addresses can have their associations modified at any time, regardless
+of the state of the instances involved. This procedure details the
+reservation of a floating IP address from an existing pool of addresses
+and the association of that address with a specific instance.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{quote}
+  Log in to the \gls{OpenStack Dashboard}.
+  \end{quote}
+\item
+  \begin{quote}
+  Select the appropriate project from the drop down menu at the top
+  left.
+  \end{quote}
+\item
+  \begin{quote}
+  On the Project tab, open the Network tab.
+  \end{quote}
+\item
+  \begin{quote}
+  Click the Floating IPs tab, which shows the floating IP addresses
+  allocated to instances.
+  \end{quote}
+\item
+  \begin{quote}
+  Click Allocate IP To Project.
+  \end{quote}
+\item
+  \begin{quote}
+  Choose the pool from which to pick the IP address.
+  \end{quote}
+\item
+  \begin{quote}
+  Click Allocate IP.
+  \end{quote}
+\item
+  \begin{quote}
+  In the Floating IPs list, click Associate.
+  \end{quote}
+\item
+  \begin{quote}
+  In the Manage Floating IP Associations dialog box, choose the
+  following options:
+  \end{quote}
+
+  \begin{itemize}
+  \item
+    \begin{quote}
+    The IP Address field is filled automatically, but you can add a new
+    IP address by clicking the + button.
+    \end{quote}
+  \item
+    \begin{quote}
+    In the Port to be associated field, select a port from the list.
+    \end{quote}
+  \end{itemize}
+\end{enumerate}
+
+\begin{quote}
+The list shows all the instances with their fixed IP addresses.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{quote}
+  Click Associate.
+  \end{quote}
+\end{enumerate}
+
+
+Another way to associate a floating IP is after the user has already launched an instance which appears in the list of running instances in the Project-->Compute-->Instances tab:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{quote}
+  Expand the drop-down menu on right next to the instance
+  \end{quote}
+\item
+  \begin{quote}
+  Select Associate Floating IP
+\begin{center}
+\includegraphics[scale=0.7]{img/associate_IP_1.png}
+\end{center}
+  \end{quote}
+\item
+  \begin{quote}
+  A pop-up window will appear and under IP Address select from the drop-down menu an IP address from the available pool.
+\begin{center}
+\includegraphics[scale=0.5]{img/associate_IP_2.png}
+\end{center}
+  \end{quote}
+\item
+  \begin{quote}
+  Click Associate
+  \end{quote}
+\end{enumerate}
+
+If the IP has been successfully associated in the upper right corner of the browser screen will appear a green confirmation. If not successful a red notification will pop up that something went wrong.
+
+~
+
+Note
+
+To disassociate an IP address from an instance, click the Disassociate
+button.
+
+To release the floating IP address back into the floating IP pool, click
+the Release Floating IP option in the Actions column.

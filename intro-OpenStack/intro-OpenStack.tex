@@ -1,0 +1,58 @@
+\documentclass[11pt,a4paper,oneside]{book}
+\usepackage{import}
+\subimport{../}{style}
+\subimport{../}{macros}
+\subimport{../}{glossary}
+\graphicspath{{../img/}}
+\makeglossaries
+\makeindex
+%TODO:
+% - crossref chapters & co
+% - \n\n -> \n
+% - soorten quotes
+% - i.e. -> i.e.,
+% - e.g. -> e.g.,
+% - files, urls, \ldots -> \texttt
+%
+
+\begin{document}
+
+\pagestyle{empty}
+
+\include{title}
+
+\glsdisablehyper
+\glstoctrue
+\printglossaries
+
+\cleardoublepage
+%\addcontentsline{toc}{chapter}{Index}
+\printindex
+
+
+\tableofcontents
+
+\part{Beginner's Guide}
+
+\pagestyle{fancy}
+
+\include{ch_DashboardLogin}
+
+\include{ch_Dashboard}
+
+\include{ch_ManageImages}
+
+\include{ch_ConfigureInstances}
+
+\include{ch_LaunchInstances}
+
+\include{ch_ManageVolumes}
+
+\include{ch_HeatTemplates}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
