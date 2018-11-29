@@ -6,6 +6,14 @@ managing every component separately, we can create, start, stop or
 clean up our complete application in a single step.  Such a set of
 collectively managed resources is called a \gls{stack}.
 
+\gls{Heat} has its own dashboard interface, which you can find under
+the Orchestration tab of the main OpenStack dashboard.  Official
+documentation for Heat and its dashboard interface can be found at the
+following locations:
+\begin{itemize}
+\item \url{https://docs.openstack.org/heat}
+\item \url{https://docs.openstack.org/heat-dashboard}
+\end{itemize}
 
 \section{\gls{Heat Orchestration Template}s}
 A \gls{stack}'s resources and their mutual dependencies can be
@@ -69,11 +77,11 @@ how to describe the various types of resources in a template.
 \textsc{VSC} also provides some example templates in the repository
 \url{https://github.com/hpcugent/openstack-templates}.
 
-\section{The Template Generator}
-The OpenStack dashboard provides a graphical interface where users can
-draw templates by dragging resources onto a workspace, and connecting
-them.  Users can then download a template generated from this
-interface, or immediately instantiate it as a stack.
+\section{The Template Generator}\label{sec:template-generator}
+The Heat dashboard provides a graphical interface where users can draw
+templates by dragging resources onto a canvas, and connecting them.
+Users can then download a template generated from this interface, or
+immediately instantiate it as a stack.
 
 As an example, we will create a template for a single node attached to
 a floating IP from the public pool, making it accessible from outside
@@ -112,7 +120,8 @@ that of the example in the official documentation at
   \begin{center}
     \includegraphics[width=0.7\textwidth]{img/all_resources_connected}
   \end{center}
-\item Next, specify the required properties of each resource.  Left-clicking a resource opens up a window with properties.
+\item Next, specify the required properties of each resource.
+  Left-clicking a resource opens up a window with properties.
   \begin{itemize}
   \item For Server\_1, configure a VM flavor and boot source in the
     ``BASIC'' tab.  In the ``ACCESS \& SECURITY'' tab, select a public
@@ -122,6 +131,7 @@ that of the example in the official documentation at
     your settings and close the property window.
     \begin{center}
       \includegraphics[width=0.7\textwidth]{img/server_basic_properties}
+      \includegraphics[width=0.7\textwidth]{img/server_access_security}
       \includegraphics[width=0.7\textwidth]{img/server_networks}
     \end{center}
   \item In the properties for Port\_1, you should select the ``vm''
@@ -155,10 +165,13 @@ that of the example in the official documentation at
   of the HOT syntax you wish to use, e.g.\
   heat\_template\_version.2018-03-02.  Now you can click the document
   icon to see the generated template, which you can download, or
-  immediately instantiate using ``CREATE STACK''.  Note: clicking
+  immediately instantiate using ``CREATE STACK''.  \strong{Note:} clicking
   ``CREATE STACK'' takes you out of the template generator, with no
   option to resume working on the configuration, unless you save a
   draft first.
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{img/complete_template}
+  \end{center}
 \end{enumerate}
 
 The resulting template should look as follows:
@@ -166,34 +179,37 @@ The resulting template should look as follows:
 \begin{code}{}
 heat_template_version: 2018-03-02
 description: version 2017-09-01 created by HOT Generator at Wed, 28 Nov 2018 13:45:30 GMT.
-resources: 
-  FloatingIP_1: 
+resources:
+  FloatingIP_1:
     type: OS::Neutron::FloatingIP
-    properties: 
+    properties:
       floating_network: fc06776a-02df-4962-8513-aea8b8177fd2
-  FloatingIPAssociation_1: 
+  FloatingIPAssociation_1:
     type: OS::Neutron::FloatingIPAssociation
-    properties: 
+    properties:
       floatingip_id: { get_resource: FloatingIP_1 }
       port_id: { get_resource: Port_1 }
-  Port_1: 
+  Port_1:
     type: OS::Neutron::Port
-    properties: 
+    properties:
       admin_state_up: true
-      security_groups: 
+      security_groups:
         - 462946d4-aec5-400c-848b-edd916760b25
       network: 2a6d5e54-91b9-4e47-8692-409f4ce1e1c8
       port_security_enabled: true
-  Server_1: 
+  Server_1:
     type: OS::Nova::Server
-    properties: 
-      networks: 
+    properties:
+      networks:
         - port: { get_resource: Port_1 }
       flavor: m1.small
       image: fbe0c7e7-2f4d-4142-85b0-8dc91d07f69f
+      key_name: my-ssh-key
 \end{code}
 
-Not all features of OpenStack templates, such as template parameters, are available in the template generator, but a generated template can serve as a starting point for more advanced configurations.
+Not all features of OpenStack templates, such as template parameters,
+are available in the template generator, but a generated template can
+serve as a starting point for more advanced configurations.
 
 \section{Launching a stack}
 
