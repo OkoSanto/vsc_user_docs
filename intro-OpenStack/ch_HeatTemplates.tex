@@ -211,7 +211,31 @@ Not all features of OpenStack templates, such as template parameters,
 are available in the template generator, but a generated template can
 serve as a starting point for more advanced configurations.
 
-\section{Launching a stack}
+\section{Managing stacks}
+The Stacks button in the Orchestration tab takes you to the overview
+page where you can launch, suspend, resume and delete stacks.
+\begin{center}
+  \includegraphics[width=\textwidth]{img/stacks_overview}
+\end{center}
+
+``Launch Stack'' starts a wizard to create a stack from a template.
+Depending on your choice of Template Source, you can provide a local
+file on your system, directly type (or paste) the template text, or
+enter a URL to download a template from that location.  You can also
+immediately launch a stack from the template generator (see section
+\ref{sec:template-generator}) using the button ``CREATE STACK''.
+
+As an example, we can instantiate one of the examples from the vsc
+repository \url{https://github.com/hpcugent/openstack-templates} by
+providing a ``raw'' Github url:
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{img/launch_stack_template}
+\end{center}
+If the template uses parameters, we can specify their values on the next page of the wizard:
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{img/launch_stack_parameters}
+\end{center}
+Finally, press the Launch button to create the stack.
 
 %%% Local Variables:
 %%% mode: latex
