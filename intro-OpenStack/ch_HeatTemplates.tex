@@ -7,7 +7,7 @@ clean up our complete application in a single step.  Such a set of
 collectively managed resources is called a \gls{stack}.
 
 \gls{Heat} has its own dashboard interface, which you can find under
-the Orchestration tab of the main OpenStack dashboard.  Official
+the \strong{Orchestration} tab of the main OpenStack dashboard.  Official
 documentation for Heat and its dashboard interface can be found at the
 following locations:
 \begin{itemize}
@@ -18,8 +18,8 @@ following locations:
 \section{\gls{Heat Orchestration Template}s}
 A \gls{stack}'s resources and their mutual dependencies can be
 specified in a text file, called a \gls{Heat Orchestration Template}
-(\textsc{HOT}).  The syntax of these templates conforms to the
-\gls{YAML} standard, for which many text editors provide specialized
+(\textsc{hot}).  The syntax of these templates conforms to the
+\gls{yaml} standard, for which many text editors provide specialized
 editing modes.  The following example describes a stack consisting of
 a single VM:
 \begin{code}{}
@@ -72,9 +72,9 @@ Optional additional sections are \lstinline{parameter_groups},
 
 The official OpenStack template documentation at
 \url{https://docs.openstack.org/heat/latest/template_guide} contains a
-specification of the \textsc{HOT} format, as well as information on
+specification of the \textsc{hot} format, as well as information on
 how to describe the various types of resources in a template.
-\textsc{VSC} also provides some example templates in the repository
+\textsc{vsc} also provides some example templates in the repository
 \url{https://github.com/hpcugent/openstack-templates}.
 
 \section{The Template Generator}\label{sec:template-generator}
@@ -90,10 +90,11 @@ that of the example in the official documentation at
 \url{https://docs.openstack.org/heat/latest/template_guide/basic_resources.html#os-neutron-resources}.
 
 \begin{enumerate}
-\item Open the Template Generator from the Orchestration tab.  Here,
-  you are presented with a set of icons for the different resources,
-  and a canvas.  The floppy disk icon (``Manage Drafts'') allows you
-  to save and restore different versions of your work.
+\item Open the \strong{Template Generator} from the
+  \strong{Orchestration} tab.  Here, you are presented with a set of
+  icons for the different resources, and a canvas.  The floppy disk
+  icon (``Manage Drafts'') allows you to save and restore different
+  versions of your work.
   \begin{center}
     \includegraphics[width=0.7\textwidth]{img/template_generator}
   \end{center}
@@ -104,13 +105,13 @@ that of the example in the official documentation at
   \begin{center}
     \includegraphics[width=0.7\textwidth]{img/all_resources}
   \end{center}
-\item To associate the port to the server, draw a connection between
-  Server\_1 and Port\_1.  To do this, click the purple ``EDIT'' icon,
-  select ``ADD EDGE'', and click and drag to draw an edge from
-  Server\_1 to Port\_1.  This will make Port\_1 a port of Server\_1.
-  Note that edges are directed: you can't draw an edge from Port\_1 to
-  Server\_1.  The resource at the end-point of an edge becomes a
-  property of the resource at the starting point.
+\item Associate the port to the server: click the purple
+  \strong{\textsc{edit}} icon, select \strong{\textsc{add edge}}, and
+  click and drag to draw an edge from Server\_1 to Port\_1.  This will
+  make Port\_1 a port of Server\_1.  Note that edges are directed: the
+  resource at the end-point of an edge becomes a property of the
+  resource at the starting point.  You can't draw an edge from Port\_1
+  to Server\_1.
   \begin{center}
     \includegraphics[width=0.7\textwidth]{img/draw_edge}
   \end{center}
@@ -124,51 +125,53 @@ that of the example in the official documentation at
   Left-clicking a resource opens up a window with properties.
   \begin{itemize}
   \item For Server\_1, configure a VM flavor and boot source in the
-    ``BASIC'' tab.  In the ``ACCESS \& SECURITY'' tab, select a public
-    key for authentication.  You can also have a look at the
-    ``Networks'' tab, where you should see that a ``port'' property
-    for Port\_1 has been added automatically.  Click ``SAVE'' to save
-    your settings and close the property window.
+    \strong{\textsc{basic}} tab.  In the \strong{\textsc{access \&
+        security}} tab, select a public key for authentication.  You
+    can also have a look at the \strong{\textsc{networks}} tab, where
+    you should see the \strong{Port} property for Port\_1, which
+    corresponds to the edge connecting Server\_1 to Port\_1.  Click
+    \strong{\textsc{save}} to save your settings and close the
+    property window.
     \begin{center}
       \includegraphics[width=0.7\textwidth]{img/server_basic_properties}
       \includegraphics[width=0.7\textwidth]{img/server_access_security}
       \includegraphics[width=0.7\textwidth]{img/server_networks}
     \end{center}
-  \item In the properties for Port\_1, you should select the ``vm''
-    network in ``Network'', enable at least the ``default'' security
-    group, and check ``Port Security Enabled''.  Click ``SAVE''.
+  \item In the properties for Port\_1, you should select the \emph{vm}
+    network in \strong{Network}, enable at least the \emph{default} security
+    group, and check \strong{Port Security Enabled}.  Click \strong{\textsc{save}}.
     \begin{center}
       \includegraphics[width=0.7\textwidth]{img/port_properties}
     \end{center}
-  \item Choose the network for FloatingIP\_1.  Select the ``public''
+  \item Choose the network for FloatingIP\_1.  Select the \emph{public}
     network to obtain a public floating ip, which will allow outside
-    access to your VM.  Click ``SAVE''.
+    access to your VM.  Click \strong{\textsc{save}}.
     \begin{center}
       \includegraphics[width=0.7\textwidth]{img/floatingip_properties}
     \end{center}
   \item When you open up the properties window for
-    FloatingIPAssociation\_1, you can see that the Floating IP and
-    Port ID properties are set correctly.  However, you still need to
-    click ``SAVE'' in order to be able to generate a template later
-    on.
+    FloatingIPAssociation\_1, you can see that the \strong{Floating
+      IP} and \strong{Port ID} properties are set correctly.  However,
+    you still need to click \strong{\textsc{save}} in order to be able
+    to generate a template from this configuration later on.
     \begin{center}
       \includegraphics[width=0.7\textwidth]{img/floatingipassociation_properties}
     \end{center}
   \end{itemize}
-\item When all required properties have been set and saved, all of the
+\item When all required properties have been set and saved, the
   template's resources are drawn in a blue color.  We are now ready to
   generate a template from our configuration.
   \begin{center}
     \includegraphics[width=0.7\textwidth]{img/stack_complete}
   \end{center}
-\item In the ``Template Version'' drop-down menu, select the version
-  of the HOT syntax you wish to use, e.g.\
-  heat\_template\_version.2018-03-02.  Now you can click the document
-  icon to see the generated template, which you can download, or
-  immediately instantiate using ``CREATE STACK''.  \strong{Note:} clicking
-  ``CREATE STACK'' takes you out of the template generator, with no
-  option to resume working on the configuration, unless you save a
-  draft first.
+\item In the \strong{Template Version} drop-down menu, select the
+  version of the \textsc{hot} syntax you wish to use, e.g.\
+  \emph{heat\_template\_version.2018-03-02}.  Now you can click the
+  document icon to see the generated template, which you can download,
+  or immediately instantiate using \strong{\textsc{create stack}}.
+  \strong{Note:} \strong{\textsc{create stack}} takes you out of the
+  template generator, with no option to resume working on the
+  configuration, unless you save a draft first.
   \begin{center}
     \includegraphics[width=0.7\textwidth]{img/complete_template}
   \end{center}
@@ -207,25 +210,27 @@ resources:
       key_name: my-ssh-key
 \end{code}
 
-Not all features of OpenStack templates, such as template parameters,
-are available in the template generator, but a generated template can
+Some features of OpenStack templates, such as template parameters, are
+not available in the template generator, but a generated template can
 serve as a starting point for more advanced configurations.
 
 \section{Managing stacks}
-The Stacks button in the Orchestration tab takes you to the overview
-page where you can launch, suspend, resume and delete stacks.
+The \strong{Stacks} button in the \strong{Orchestration} tab takes you
+to the overview page where you can launch, suspend, resume and delete
+stacks.
 \begin{center}
   \includegraphics[width=\textwidth]{img/stacks_overview}
 \end{center}
 
-``Launch Stack'' starts a wizard to create a stack from a template.
-Depending on your choice of Template Source, you can provide a local
-file on your system, directly type (or paste) the template text, or
-enter a URL to download a template from that location.  You can also
-immediately launch a stack from the template generator (see section
-\ref{sec:template-generator}) using the button ``CREATE STACK''.
+\strong{Launch Stack} starts a wizard to create a stack from a
+template.  Depending on your choice of \strong{Template Source}, you
+can provide a local file on your system, directly type (or paste) the
+template text, or enter a \textsc{url} to download a template from
+that location.  You can also immediately launch a stack from the
+template generator (see section \ref{sec:template-generator}) using
+the button \strong{\textsc{create stack}}.
 
-As an example, we can instantiate one of the examples from the vsc
+As an example, we can instantiate one of the examples from the \textsc{vsc}
 repository \url{https://github.com/hpcugent/openstack-templates} by
 providing a ``raw'' Github url:
 \begin{center}
