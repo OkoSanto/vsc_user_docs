@@ -1,24 +1,37 @@
 \chapter{The OpenStack Dashboard}
+This chapter briefly describes the different components of
+\gls{Horizon}, the \gls{OpenStack Dashboard}.  You can read the
+official documentation at
+\url{https://docs.openstack.org/horizon/\osversion/user}.
+\strong{Note:} the following features are not available for VSC cloud
+users, and have been removed from the dashboard:
+\begin{itemize}
+\item Consistency Group Snapshots (``Volumes'' tab);
+\item Managing your own networks and routers (``Network'' tab);
+\item Sharing networks (``Share'' tab).
+\end{itemize}
+Please contact \cloudinfo if you need access to one of these disabled
+features.
 
-After login the user will be navigated to the \gls{OpenStack Dashboard}
-
+After login the user will be navigated to the Overview tab of the dashboard.
 \begin{center}
 \includegraphics[scale=0.3]{img/tab-compute-overview.png}
 \end{center}
 
-\subsection{OpenStack dashboard - Project
-tab}\label{openstack-dashboard---project-tab}
+\section*{OpenStack dashboard - Project
+  tab}\label{openstack-dashboard---project-tab}
+Resources (instances, data volumes, networks, \ldots) in OpenStack are
+organized into different projects, and every user is a member of one
+or more projects.  Every project member has full access to all of the
+project's resources.
 
-Each user is a member of one or more projects. Within a project, a user
-creates and manages instances. From the Project tab, you can access the
-following categories:
-
+From the Project tab, you can access the following categories:
 \begin{itemize}
 \item
   API Access: View API endpoints.
 \end{itemize}
 
-\subsubsection{\texorpdfstring{Compute
+\subsection*{\texorpdfstring{Compute
 tab}{Compute tab}}\label{compute-tab}
 
 \begin{itemize}
@@ -35,7 +48,7 @@ tab}{Compute tab}}\label{compute-tab}
   Key Pairs: View, create, edit, import, and delete key pairs.
 \end{itemize}
 
-\subsubsection{\texorpdfstring{Volumes
+\subsection*{\texorpdfstring{Volumes
 tab}{Volumes tab}}\label{volumes-tab}
 
 \begin{itemize}
@@ -52,7 +65,7 @@ tab}{Volumes tab}}\label{volumes-tab}
   consistency group snapshots.
 \end{itemize}
 
-\subsubsection{\texorpdfstring{Network
+\subsection*{\texorpdfstring{Network
 tab}{Network tab}}\label{network-tab}
 
 \begin{itemize}
@@ -69,7 +82,7 @@ tab}{Network tab}}\label{network-tab}
   Floating IPs: Allocate an IP address to or release it from a project
 \end{itemize}
 
-\subsubsection{\texorpdfstring{Orchestration
+\subsection*{\texorpdfstring{Orchestration
 tab}{Orchestration tab}}\label{orchestration-tab}
 
 \begin{itemize}
@@ -83,7 +96,7 @@ tab}{Orchestration tab}}\label{orchestration-tab}
   Template generator:
 \end{itemize}
 
-\subsubsection{\texorpdfstring{Shares
+\subsection*{\texorpdfstring{Shares
 tab}{Shares tab}}\label{shares-tab}
 
 \begin{itemize}
@@ -101,7 +114,7 @@ tab}{Shares tab}}\label{shares-tab}
   Share group snapshots:
 \end{itemize}
 
-\subsection{OpenStack dashboard - Identity
+\section*{OpenStack dashboard - Identity
 tab}\label{openstack-dashboard---identity-tab}
 
 From the Identity tab, you can access the following categories:
@@ -113,3 +126,8 @@ From the Identity tab, you can access the following categories:
 \item
   Users: View, create, enable, disable, and delete users.
 \end{itemize}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "intro-OpenStack"
+%%% End:
