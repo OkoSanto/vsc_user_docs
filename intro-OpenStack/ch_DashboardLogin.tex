@@ -1,17 +1,25 @@
-\chapter{Cloud Dashboard Login}
+\chapter{Access to the VSC Cloud}
+\section{Requirements}\label{sec:requirements}
+Before you try to access the VSC cloud services, please ensure the following:
+\begin{itemize}
+\item You have an active VSC account.  New users can obtain an account
+  at \url{https://www.vscentrum.be/cluster-doc/account-request}.
+\item Your account is part of one or more OpenStack projects.  Please
+  contact \cloudinfo if you want to start a new project or join an
+  existing one.
+\end{itemize}
 
-In order to use the cloud services offered at VSC user must have an active VSC-account. Go to \url{https://cloud.vscentrum.be}
+\section{Login}\label{sec:access}
+Your cloud resources are managed using a web interface, which you can access via \url{https://cloud.vscentrum.be}.
 
+To log in, choose the (default) authentication method \emph{VSC Accountpage} and click \strong{Connect}.
 \begin{center}
-\includegraphics[scale=0.7]{img/cloud_login_1.png}
+\includegraphics[width=0.5\textwidth]{img/cloud_login_1.png}
 \end{center}
 
-Select your institution and proceed with the login.
+From here on, follow the standard procedure to log in to your VSC account, using your home institution's central sign-on system.  You can find a detailed description in the HPC tutorial at \url{https://vscentrum.be/support/tut-book/vsc-tutorials}.
 
-\begin{center}
-\includegraphics[scale=0.7]{img/cloud_login_2.png}
-\end{center}
-
-Since VSC Cloud is part of the VSC \hpc ecosystem you will be redirected to the central login of your institution.
-
-Please don't hesitate to contact \hpcinfo in case of questions or problems.
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "intro-OpenStack"
+%%% End:
