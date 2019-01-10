@@ -4,27 +4,23 @@ Before you launch an \gls{instance}, you should add security group rules to
 enable users to ping and use SSH to connect to the instance. Security
 groups are sets of IP filter rules that define networking access and are
 applied to all instances within a project. To do so, you either add
-rules to the default security group
-{\emph{Add a rule to the default security group}\ref{add-a-rule-to-the-default-security-group}} or add a new security group with
+rules to the default security group or add a new security group with
 rules.
 
 Key pairs are SSH credentials that are injected into an instance when it
 is launched. To use key pair injection, the image that the instance is
 based on must contain the \textbf{cloud-init} package. Each project
 should have at least one key pair. For more information, see the section
-{\emph{Add a key pair}}.
+{\emph{Add a key pair} on page \pageref{add-a-key-pair}.
 
 If you have generated a key pair with an external tool, you can import
 it into \gls{OpenStack}. The key pair can be used for multiple instances that
 belong to a project. For more information, see the section
-{\emph{Import a key pair}}.
+{\emph{Import a key pair}} on page \pageref{import-a-key-pair}.
 
-~
-
-Note
-
-A key pair belongs to an individual user, not to a project. To share a
-key pair across multiple users, each user needs to import that key pair.
+\strong{Note:} A key pair belongs to an individual user, not to a
+project. To share a key pair across multiple users, each user needs to
+import that key pair.
 
 When an instance is created in \gls{OpenStack}, it is automatically assigned a
 fixed IP address in the network to which the instance is assigned. This
@@ -34,7 +30,7 @@ floating IP address can also be attached to an instance. Unlike fixed IP
 addresses, floating IP addresses are able to have their associations
 modified at any time, regardless of the state of the instances involved.
 
-\strong{Add a rule to the default security group}\label{add-a-rule-to-the-default-security-group}
+\subsubsection{Add a rule to the default security group}\label{add-a-rule-to-the-default-security-group}
 
 This procedure enables SSH and ICMP (ping) access to instances. The
 rules apply to all instances within a given project, and should be set
@@ -44,12 +40,8 @@ access to the instances.
 This procedure can be adjusted as necessary to add additional security
 group rules to a project, if your cloud requires them.
 
-~
-
-Note
-
-When adding a rule, you must specify the protocol used with the
-destination port or source port.
+\strong{Note:} When adding a rule, you must specify the protocol used
+with the destination port or source port.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -96,14 +88,8 @@ destination port or source port.
   \end{itemize}
 \end{enumerate}
 
-\begin{quote}
-~
-
-Note
-
-To accept requests from a particular range of IP addresses, specify the
-IP address block in the CIDR box.
-\end{quote}
+\strong{Note:} To accept requests from a particular range of IP
+addresses, specify the IP address block in the CIDR box.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -156,7 +142,7 @@ Instances will now have SSH port 22 open for requests from any IP address.
 Instances will now accept all incoming ICMP packets.
 \end{quote}
 
-\strong{Add a key pair}\label{add-a-key-pair}
+\subsubsection{Add a key pair}\label{add-a-key-pair}
 
 Create at least one key pair for each project.
 
@@ -195,7 +181,7 @@ Create at least one key pair for each project.
   \end{quote}
 \end{enumerate}
 
-\strong{Import a key pair}\label{import-a-key-pair}
+\subsubsection{Import a key pair}\label{import-a-key-pair}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -242,17 +228,11 @@ Create at least one key pair for each project.
   \end{quote}
 \end{enumerate}
 
-\begin{quote}
-~
-
-Note
-
-If you are using the \gls{OpenStack Dashboard} from a Windows computer, use PuTTYgen to
-load the \textbf{*.pem} file and convert and save it as \textbf{*.ppk}.
-For more information see the
-\href{https://winscp.net/eng/docs/ui_puttygen}{\emph{WinSCP web page for
-PuTTYgen}}.
-\end{quote}
+\strong{Note:} If you are using the \gls{OpenStack Dashboard} from a
+Windows computer, use PuTTYgen to load the \textbf{*.pem} file and
+convert and save it as \textbf{*.ppk}.  For more information see the
+\href{https://winscp.net/eng/docs/ui_puttygen}{\emph{WinSCP web page
+    for PuTTYgen}}.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -270,7 +250,7 @@ The Compute database registers the public key of the key pair.
 
 The \gls{OpenStack Dashboard} lists the key pair on the Key Pairs tab.
 
-\strong{Allocate a floating IP address to an instance}\label{allocate-a-floating-ip-address-to-an-instance}
+\subsubsection{Allocate a floating IP address to an instance}\label{allocate-a-floating-ip-address-to-an-instance}
 
 When an instance is created in \gls{OpenStack}, it is automatically assigned a
 fixed IP address in the network to which the instance is assigned. This
@@ -382,12 +362,7 @@ Another way to associate a floating IP is after the user has already launched an
 
 If the IP has been successfully associated in the upper right corner of the browser screen will appear a green confirmation. If not successful a red notification will pop up that something went wrong.
 
-~
-
-Note
-
-To disassociate an IP address from an instance, click the Disassociate
-button.
-
-To release the floating IP address back into the floating IP pool, click
-the Release Floating IP option in the Actions column.
+\strong{Note:} To disassociate an IP address from an instance, click
+the Disassociate button.  To release the floating IP address back into
+the floating IP pool, click the Release Floating IP option in the
+Actions column.
