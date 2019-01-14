@@ -59,42 +59,19 @@ an \gls{instance} from the following sources:
 
   \item[Source] tab
   \begin{description}
-  \item[Instance Boot Source] Your options are:
+  \item[Select Boot Source] Your options are:
     \begin{description}
-    \item[Boot from image] If you choose this option, a new field for
-      Image Name displays. You can select the image from the list.
-    \item[Boot from snapshot] If you choose this option, a new field
-      for Instance Snapshot displays.  You can select the snapshot
-      from the list.
-    \item[Boot from volume] If you choose this option, a new field for
-      Volume displays. You can select the volume from the list.
-    \item[Boot from image (creates a new volume)] With this option,
-      you can boot from an image and create a volume by entering the
-      Device Size and Device Name for your volume. Click the Delete
-      Volume on Instance Delete option to delete the volume on
-      deleting the instance.
-    \item[Boot from volume snapshot (creates a new volume)] Using this
-      option, you can boot from a volume snapshot and create a new
-      volume by choosing Volume Snapshot from a list and adding a
-      Device Name for your volume. Click the Delete Volume on Instance
-      Delete option to delete the volume on deleting the instance.
+    \item[Image]
+    \item[Image snapshot]
+    \item[Volume]
+    \item[Volume snapshot]
     \end{description}
+    Depending on the type of boot source, the list of available items
+    changes.
 
-  \item[Image Name] This field changes based on your previous
-    selection. If you have chosen to launch an instance using an
-    image, the Image Name field displays.  Select the image name from
-    the dropdown list.
-
-  \item[Instance Snapshot] This field changes based on your previous
-    selection. If you have chosen to launch an instance using a
-    snapshot, the Instance Snapshot field displays. Select the
-    snapshot name from the dropdown list.
-
-  \item[Volume] This field changes based on your previous
-    selection. If you have chosen to launch an instance using a
-    volume, the Volume field displays. Select the volume name from the
-    dropdown list. If you want to delete the volume on instance
-    delete, check the Delete Volume on Instance Delete option.
+  \item[Create New Volume] With this option, you can boot from an
+    image or instance snapshot and create a volume to make changes to
+    your instance persist.
   \end{description}
 
 \item[Flavor] tab. Specify the size of the instance to launch.
@@ -126,6 +103,9 @@ an \gls{instance} from the following sources:
 \item[Configuration] tab. Specify a customization script that runs
   after your instance launches.
 
+\item[Server Groups] tab.
+
+\item[Scheduler Hints] tab.
 
 \item[Metadata] tab. Add Metadata items to your instance.
 \end{description}
