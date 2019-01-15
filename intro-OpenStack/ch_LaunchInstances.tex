@@ -57,6 +57,9 @@ an \gls{instance} from the following sources:
       than \strong{1}. The default is \strong{1}.
     \end{description}
 
+    \begin{center}
+      \includegraphics[width=0.7\textwidth]{img/launch_instance_source}
+    \end{center}
   \item[Source] tab
   \begin{description}
   \item[Select Boot Source] Your options are:
@@ -69,9 +72,10 @@ an \gls{instance} from the following sources:
     Depending on the type of boot source, the list of available items
     changes.
 
-  \item[Create New Volume] With this option, you can boot from an
-    image or instance snapshot and create a volume to make changes to
-    your instance persist.
+  \item[Create New Volume] If you enable this option when launching
+    from an image or instance snapshot, the image or snapshot will be
+    copied to a volume.  This way, the state of your instance persists
+    after shutdown and reboot.
   \end{description}
 
 \item[Flavor] tab. Specify the size of the instance to launch.
