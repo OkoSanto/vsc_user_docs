@@ -44,206 +44,84 @@ group rules to a project, if your cloud requires them.
 with the destination port or source port.
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \begin{quote}
-  Log in to the \gls{OpenStack Dashboard}.
-  \end{quote}
-\item
-  \begin{quote}
-  Select the appropriate project from the drop down menu at the top
-  left.
-  \end{quote}
-\item
-  \begin{quote}
-  On the Project tab, open the Network tab. The Security Groups tab
-  shows the security groups that are available for this project.
-  \end{quote}
-\item
-  \begin{quote}
-  Select the default security group and click Manage Rules.
-  \end{quote}
-\item
-  \begin{quote}
-  To allow SSH access, click Add Rule.
-  \end{quote}
-\item
-  \begin{quote}
-  In the Add Rule dialog box, enter the following values:
-  \end{quote}
+\item Open the Network tab. The Security Groups
+  tab shows the security groups that are available for this project.
+\item Select the default security group and click Manage Rules.
+\item To allow SSH access, click Add Rule.
+\item In the Add Rule dialog box, enter the following values:
 
   \begin{itemize}
-  \item
-    \begin{quote}
-    \textbf{Rule}: \textbf{SSH}
-    \end{quote}
-  \item
-    \begin{quote}
-    \textbf{Remote}: \textbf{CIDR}
-    \end{quote}
-  \item
-    \begin{quote}
-    \textbf{CIDR}: \textbf{0.0.0.0/0}
-    \end{quote}
+  \item \textbf{Rule}: \textbf{SSH}
+  \item \textbf{Remote}: \textbf{CIDR}
+  \item \textbf{CIDR}: \textbf{0.0.0.0/0}
   \end{itemize}
-\end{enumerate}
 
-\strong{Note:} To accept requests from a particular range of IP
-addresses, specify the IP address block in the CIDR box.
+  \strong{Note:} To accept requests from a particular range of IP
+  addresses, specify the IP address block in the CIDR box.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \begin{quote}
-  Click Add.
-  \end{quote}
-\end{enumerate}
+\item Click Add.
 
-\begin{quote}
-Instances will now have SSH port 22 open for requests from any IP address.
-\end{quote}
+  Instances will now have SSH port 22 open for requests from any IP
+  address.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \begin{quote}
-  To add an ICMP rule, click Add Rule.
-  \end{quote}
-\item
-  \begin{quote}
-  In the Add Rule dialog box, enter the following values:
-  \end{quote}
+\item To add an ICMP rule, click Add Rule.
+\item In the Add Rule dialog box, enter the following values:
 
   \begin{itemize}
-  \item
-    \begin{quote}
-    \textbf{Rule}: \textbf{All ICMP}
-    \end{quote}
-  \item
-    \begin{quote}
-    \textbf{Direction}: \textbf{Ingress}
-    \end{quote}
-  \item
-    \begin{quote}
-    \textbf{Remote}: \textbf{CIDR}
-    \end{quote}
-  \item
-    \begin{quote}
-    \textbf{CIDR}: \textbf{0.0.0.0/0}
-    \end{quote}
+  \item \textbf{Rule}: \textbf{All ICMP}
+  \item \textbf{Direction}: \textbf{Ingress}
+  \item \textbf{Remote}: \textbf{CIDR}
+  \item \textbf{CIDR}: \textbf{0.0.0.0/0}
   \end{itemize}
-\item
-  \begin{quote}
-  Click Add.
-  \end{quote}
-\end{enumerate}
 
-\begin{quote}
-Instances will now accept all incoming ICMP packets.
-\end{quote}
+\item Click Add.
+
+  Instances will now accept all incoming ICMP packets.
+\end{enumerate}
 
 \subsubsection{Add a key pair}\label{add-a-key-pair}
-
 Create at least one key pair for each project.
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \begin{quote}
-  Log in to the \gls{OpenStack Dashboard}.
-  \end{quote}
-\item
-  \begin{quote}
-  Select the appropriate project from the drop down menu at the top
-  left.
-  \end{quote}
-\item
-  \begin{quote}
-  On the Project tab, open the Compute tab.
-  \end{quote}
-\item
-  \begin{quote}
-  Click the Key Pairs tab, which shows the key pairs that are available
-  for this project.
-  \end{quote}
-\item
-  \begin{quote}
-  Click Create Key Pair.
-  \end{quote}
-\item
-  \begin{quote}
-  In the Create Key Pair dialog box, enter a name for your key pair, and
-  click Create Key Pair.
-  \end{quote}
-\item
-  \begin{quote}
-  Respond to the prompt to download the key pair.
-  \end{quote}
-\end{enumerate}
+\item Open the Compute tab.
+\item Click the Key Pairs tab, which shows the key pairs that are
+  available for this project.
+\item Click Create Key Pair.
+\item In the Create Key Pair dialog box, enter a name for your key
+  pair, and click Create Key Pair.
+\item Respond to the prompt to download the key pair.
+  \end{enumerate}
 
 \subsubsection{Import a key pair}\label{import-a-key-pair}
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \begin{quote}
-  Log in to the \gls{OpenStack Dashboard}.
-  \end{quote}
-\item
-  \begin{quote}
-  Select the appropriate project from the drop down menu at the top
-  left.
-  \end{quote}
-\item
-  \begin{quote}
-  On the Project tab, open the Compute tab.
-  \end{quote}
-\item
-  \begin{quote}
-  Click the Key Pairs tab, which shows the key pairs that are available
-  for this project.
-  \end{quote}
-\item
-  \begin{quote}
-  Click Import Key Pair.
-  \end{quote}
-\item
-  \begin{quote}
-  In the Import Key Pair dialog box, enter the name of your key pair,
-  copy the public key into the Public Key box, and then click Import Key
-  Pair.
-  \end{quote}
-\item
-  \begin{quote}
-  Save the \textbf{*.pem} file locally.
-  \end{quote}
-\item
-  \begin{quote}
-  To change its permissions so that only you can read and write to the
-  file, run the following command:
-  \end{quote}
-\item
-  \begin{quote}
-  \$ chmod 0600 yourPrivateKey.pem
-  \end{quote}
-\end{enumerate}
+\item Open the Compute tab.
+\item Click the Key Pairs tab, which shows the key pairs that are
+  available for this project.
+\item Click Import Key Pair.
+\item In the Import Key Pair dialog box, enter the name of your key
+  pair, copy the public key into the Public Key box, and then click
+  Import Key Pair.
+\item Save the \textbf{*.pem} file locally.
+\item To change its permissions so that only you can read and write to
+  the file, run the following command:
 
-\strong{Note:} If you are using the \gls{OpenStack Dashboard} from a
-Windows computer, use PuTTYgen to load the \textbf{*.pem} file and
-convert and save it as \textbf{*.ppk}.  For more information see the
-\href{https://winscp.net/eng/docs/ui_puttygen}{\emph{WinSCP web page
-    for PuTTYgen}}.
+  \begin{prompt}
+      %\shellcmd{chmod 0600 yourPrivateKey.pem}
+  \end{prompt}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \begin{quote}
-  To make the key pair known to SSH, run the \textbf{ssh-add} command.
-  \end{quote}
-\item
-  \begin{quote}
-  \$ ssh-add yourPrivateKey.pem
-  \end{quote}
+  \strong{Note:} If you are using the \gls{OpenStack Dashboard} from a
+  Windows computer, use PuTTYgen to load the \textbf{*.pem} file and
+  convert and save it as \textbf{*.ppk}.  For more information see the
+  \href{https://winscp.net/eng/docs/ui_puttygen}{\emph{WinSCP web page
+      for PuTTYgen}}.
+
+\item To make the key pair known to SSH, run the \textbf{ssh-add}
+  command.
+
+  \begin{prompt}
+    %\shellcmd{ssh-add yourPrivateKey.pem}
+  \end{prompt}
 \end{enumerate}
 
 The Compute database registers the public key of the key pair.
@@ -265,99 +143,41 @@ reservation of a floating IP address from an existing pool of addresses
 and the association of that address with a specific instance.
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \begin{quote}
-  Log in to the \gls{OpenStack Dashboard}.
-  \end{quote}
-\item
-  \begin{quote}
-  Select the appropriate project from the drop down menu at the top
-  left.
-  \end{quote}
-\item
-  \begin{quote}
-  On the Project tab, open the Network tab.
-  \end{quote}
-\item
-  \begin{quote}
-  Click the Floating IPs tab, which shows the floating IP addresses
-  allocated to instances.
-  \end{quote}
-\item
-  \begin{quote}
-  Click Allocate IP To Project.
-  \end{quote}
-\item
-  \begin{quote}
-  Choose the pool from which to pick the IP address.
-  \end{quote}
-\item
-  \begin{quote}
-  Click Allocate IP.
-  \end{quote}
-\item
-  \begin{quote}
-  In the Floating IPs list, click Associate.
-  \end{quote}
-\item
-  \begin{quote}
-  In the Manage Floating IP Associations dialog box, choose the
+\item Open the Network tab.
+\item Click the Floating IPs tab, which shows the floating IP
+  addresses allocated to instances.
+\item Click Allocate IP To Project.
+\item Choose the pool from which to pick the IP address.
+\item Click Allocate IP.
+\item In the Floating IPs list, click Associate.
+\item In the Manage Floating IP Associations dialog box, choose the
   following options:
-  \end{quote}
 
   \begin{itemize}
-  \item
-    \begin{quote}
-    The IP Address field is filled automatically, but you can add a new
-    IP address by clicking the + button.
-    \end{quote}
-  \item
-    \begin{quote}
-    In the Port to be associated field, select a port from the list.
-    \end{quote}
+  \item The IP Address field is filled automatically, but you can add
+    a new IP address by clicking the + button.
+  \item In the Port to be associated field, select a port from the
+    list.
   \end{itemize}
+
+  The list shows all the instances with their fixed IP addresses.
+\item Click Associate.
 \end{enumerate}
-
-\begin{quote}
-The list shows all the instances with their fixed IP addresses.
-\end{quote}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \begin{quote}
-  Click Associate.
-  \end{quote}
-\end{enumerate}
-
 
 Another way to associate a floating IP is after the user has already launched an instance which appears in the list of running instances in the Project-->Compute-->Instances tab:
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \begin{quote}
-  Expand the drop-down menu on right next to the instance
-  \end{quote}
-\item
-  \begin{quote}
-  Select Associate Floating IP
+\item Expand the drop-down menu on right next to the instance
+\item Select Associate Floating IP
 \begin{center}
 \includegraphics[scale=0.7]{img/associate_IP_1.png}
 \end{center}
-  \end{quote}
-\item
-  \begin{quote}
-  A pop-up window will appear and under IP Address select from the drop-down menu an IP address from the available pool.
+\item A pop-up window will appear and under IP Address select from the
+  drop-down menu an IP address from the available pool.
 \begin{center}
 \includegraphics[scale=0.5]{img/associate_IP_2.png}
 \end{center}
-  \end{quote}
-\item
-  \begin{quote}
-  Click Associate
-  \end{quote}
+\item Click Associate
 \end{enumerate}
 
 If the IP has been successfully associated in the upper right corner of the browser screen will appear a green confirmation. If not successful a red notification will pop up that something went wrong.
@@ -366,3 +186,8 @@ If the IP has been successfully associated in the upper right corner of the brow
 the Disassociate button.  To release the floating IP address back into
 the floating IP pool, click the Release Floating IP option in the
 Actions column.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "intro-OpenStack"
+%%% End:
