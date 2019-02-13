@@ -1,4 +1,5 @@
 \chapter{Launch and manage instances}\label{cha:launch-manage-inst}
+
 Instances are virtual machines that run inside the cloud. You can launch
 an \gls{instance} from the following sources:
 
@@ -15,7 +16,9 @@ an \gls{instance} from the following sources:
 \end{itemize}
 
 \subsection*{Launch an instance}\label{launch-an-instance}
+
 \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item Open the Compute tab and click Instances category.
 
   The dashboard shows the instances with its name, its private and
@@ -81,10 +84,7 @@ an \gls{instance} from the following sources:
   selected for launching an instance. For example, while creating an
   image, if you have entered the value in the Minimum RAM (MB) field
   as 2048, then on selecting the image, the default flavor is
-  \textbf{m1.small}.  If a '!' warning sign is displayed next to a
-  resource for one of the flavors, that means that this flavor would
-  exceed the project's quota for that resource, and therefore is not
-  available.
+  \textbf{m1.small}.
 
 \item[Networks] tab. Add one or more networks to the instance.
 
@@ -96,8 +96,9 @@ an \gls{instance} from the following sources:
   Security groups are a kind of cloud firewall that define which
   incoming network traffic is forwarded to instances.
 
-  The default security group is assigned to the instance
-  automatically.
+  If you have not created any security groups, you can assign only the
+  default security group to the instance.
+
 \item[Key Pair] tab. Specify a key pair.
 
   If the image uses a static root password or a static key set
@@ -113,6 +114,7 @@ an \gls{instance} from the following sources:
 \item[Metadata] tab. Add Metadata items to your instance.
 \end{description}
 
+\def\labelenumi{\arabic{enumi}.}
 \item Click Launch Instance.
 \end{enumerate}
 
@@ -133,7 +135,17 @@ For details on creating images, see
 \href{https://docs.openstack.org/image-guide/create-images-manually.html}{\emph{Creating
 images manually}} in the \emph{OpenStack Virtual Machine Image Guide}.
 
-\subsection*{Connect to your instance by using SSH}\label{connect-to-your-instance-by-using-ssh}
+\strong{Note:} When running QEMU without support for the hardware
+virtualization, set \textbf{cpu\_mode="none"} alongside
+\textbf{virt\_type=qemu} in \textbf{/etc/nova/nova-compute.conf} to
+solve the following error:
+
+libvirtError: unsupported configuration: CPU mode 'host-model'
+
+for ``x86\_64`` qemu domain on ``x86\_64`` host is not supported by
+hypervisor
+
+\strong{Connect to your instance by using SSH}\label{connect-to-your-instance-by-using-ssh}
 
 To use SSH to connect to your instance, use the downloaded keypair file.
 
@@ -141,6 +153,7 @@ To use SSH to connect to your instance, use the downloaded keypair file.
 images on TryStack.
 
 \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item Copy the IP address for your instance.
 \item Use the \textbf{ssh} command to make a secure connection to the
   instance. For example:
@@ -154,22 +167,24 @@ information about root password injection, see
 \href{https://docs.openstack.org/nova/\osversion/admin/admin-password-injection.html}{\emph{Injecting the administrator password}} in the \emph{OpenStack Administrator
 Guide}.
 
-\subsection*{Track usage for instances}\label{track-usage-for-instances}
+\strong{Track usage for instances}\label{track-usage-for-instances}
 
 You can track usage for instances for each project. You can track costs
 per month by showing meters like number of vCPUs, disks, RAM, and uptime
 for all your instances.
 
 \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item Open the Compute tab and click Overview category.
 \item To query the instance usage for a month, select a month and click
   Submit.
 \item To download a summary, click Download CSV Summary.
 \end{enumerate}
 
-\subsection*{Create an instance snapshot}\label{create-an-instance-snapshot}
+\strong{Create an instance snapshot}\label{create-an-instance-snapshot}
 
 \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item Open the Compute tab and click the Instances
   category.
 \item Select the instance from which to create a snapshot.
@@ -183,9 +198,10 @@ The Images category shows the instance snapshot.
 To launch an instance from the snapshot, select the snapshot and click
 Launch. Proceed with launching an instance.
 
-\subsection*{Manage an instance}\label{manage-an-instance}
+\strong{Manage an instance}\label{manage-an-instance}
 
 \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item Open the Compute tab and click Instances category.
 \item Select an instance.
 \item In the menu list in the actions column, select the state.
