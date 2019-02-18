@@ -31,19 +31,6 @@ refer to chapter 2 of
 project. To share a key pair across multiple users, each user needs to
 import that key pair.
 
-When an instance is created in \gls{OpenStack}, it is automatically
-assigned a fixed IP address in the network to which the instance is
-assigned. This IP address is permanently associated with the instance
-until the instance is terminated. However, in addition to the fixed IP
-address, a floating IP address can also be attached to an
-instance. Unlike fixed IP addresses, floating IP addresses are able to
-have their associations modified at any time, regardless of the state
-of the instances involved.  In the VSC cloud, floating IP's are public
-(accessible from the the Ugent login node
-\lstinline{login.hpc.ugent.be}).  In order to make your instance
-accessible from outside of the Openstack environment, you must attach
-a port connected to the VM network to such a public floating IP.
-
 \subsubsection{Add a key pair}\label{add-a-key-pair}
 Create at least one key pair for each project.
 
@@ -96,18 +83,23 @@ The Compute database registers the public key of the key pair.
 The \gls{OpenStack Dashboard} lists the key pair on the Key Pairs tab.
 
 \subsubsection{Allocate a floating IP address to an instance}\label{allocate-a-floating-ip-address-to-an-instance}
+When an instance is created in \gls{OpenStack}, it is automatically
+assigned a fixed IP address in the network to which the instance is
+assigned. This IP address is permanently associated with the instance
+until the instance is terminated.
 
-When an instance is created in \gls{OpenStack}, it is automatically assigned a
-fixed IP address in the network to which the instance is assigned. This
-IP address is permanently associated with the instance until the
-instance is terminated.
+However, in addition to the fixed IP address, a floating IP address
+can also be attached to an instance.  Unlike fixed IP addresses,
+floating IP addresses can have their associations modified at any
+time, regardless of the state of the instances involved.  In the VSC
+cloud, floating IP's are public (accessible from the the Ugent login
+node \lstinline{login.hpc.ugent.be}).  In order to make your instance
+accessible from outside of the Openstack environment, you must attach
+a port connected to the VM network to such a public floating IP.
 
-However, in addition to the fixed IP address, a floating IP address can
-also be attached to an instance. Unlike fixed IP addresses, floating IP
-addresses can have their associations modified at any time, regardless
-of the state of the instances involved. This procedure details the
-reservation of a floating IP address from an existing pool of addresses
-and the association of that address with a specific instance.
+This procedure details the reservation of a floating IP address from
+an existing pool of addresses and the association of that address with
+a specific instance.
 
 \begin{enumerate}
 \item Open the Network tab.
