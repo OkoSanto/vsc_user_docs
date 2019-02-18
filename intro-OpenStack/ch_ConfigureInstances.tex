@@ -13,6 +13,11 @@ package. Each project should have at least one key pair. For more
 information, see the section \emph{Add a key pair} on page
 \pageref{add-a-key-pair}.
 
+\strong{Note:} In the VSC cloud, public keys you've uploaded to the
+VSC account portal are automatically available in OpenStack projects.
+Changes to your VSC account are reflected in the OpenStack environment
+within 20 minutes.
+
 If you have generated a key pair with an external tool, you can import
 it into \gls{OpenStack}. The key pair can be used for multiple
 instances that belong to a project. For more information, see the
@@ -34,7 +39,8 @@ address, a floating IP address can also be attached to an
 instance. Unlike fixed IP addresses, floating IP addresses are able to
 have their associations modified at any time, regardless of the state
 of the instances involved.  In the VSC cloud, floating IP's are public
-(accessible from the login nodes).  In order to make your instance
+(accessible from the the Ugent login node
+\lstinline{login.hpc.ugent.be}).  In order to make your instance
 accessible from outside of the Openstack environment, you must attach
 a port connected to the VM network to such a public floating IP.
 
