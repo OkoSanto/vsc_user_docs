@@ -133,18 +133,44 @@ For details on creating images, see
 \href{https://docs.openstack.org/image-guide/create-images-manually.html}{\emph{Creating
 images manually}} in the \emph{OpenStack Virtual Machine Image Guide}.
 
-\subsection*{Connect to your instance by using SSH}\label{connect-to-your-instance-by-using-ssh}
+\subsection*{Connect to your instance using SSH}\label{connect-to-your-instance-using-ssh}
 
-To use SSH to connect to your instance, use the downloaded keypair file.
+In order to be able to reach an instance from outside of OpenStack,
+you must associate a floating IP to it, as detailed in section
+\ref{allocate-a-floating-ip-address-to-an-instance} on page
+\pageref{allocate-a-floating-ip-address-to-an-instance}.
+Additionally, you must have access to the private key of the keypair
+for that instance.
 
-\strong{Note:} The user name for the Ubuntu images is \textbf{ubuntu}.
+You can only reach the floating IP's from the UGent login node
+\lstinline{login.hpc.ugent.be}, so you'll need to access the UGent
+login node first, and hop to your instance from there.  As you
+shouldn't keep the private keys in your VSC storage space, you need to
+set up an SSH agent with key forwarding on the local machine where you store the private keys.  Section 2.1.4 of the HPC tutorial explains how to set this up (\url{https://www.vscentrum.be/support/tut-book/vsc-tutorials}).
 
 \begin{enumerate}
-\item Copy the IP address for your instance.
-\item Use the \textbf{ssh} command to make a secure connection to the
-  instance. For example:
-\item \$ ssh -i MyKey.pem ubuntu@10.0.0.2
-\item At the prompt, type \textbf{yes}.
+\item Connect to the UGent login node, using the \lstinline{ssh -A} option
+  to enable agent forwarding:
+
+  \begin{prompt}
+    %\shellcmd{ssh -A vsc12345@login.hpc.ugent.be}
+  \end{prompt}
+
+\item Copy the address of the floating IP associated with your
+  instance.  In our example, the address is 193.190.85.40.
+
+\item From the login node, connect to the instance. For example:
+
+  \begin{prompt}
+    %\shellcmd{ssh ubuntu@193.190.85.40}
+  \end{prompt}
+
+  The default images do not allow ssh logins for the root user.  There
+  is a default user instead, who can get administrator privileges
+  using \lstinline{sudo}.  In our example, we have used the username
+  \lstinline{ubuntu} for Ubuntu images.  Attempting to log in as root
+  will return an error message with the proper user name.
+  % TODO: proper section on usernames, sudo, ...
 \end{enumerate}
 
 \subsection*{Track usage for instances}\label{track-usage-for-instances}

@@ -10,30 +10,32 @@ Key pairs are SSH credentials that can be automatically injected into
 an instance when it is launched. To use key pair injection, the image
 that the instance is based on must contain the \textbf{cloud-init}
 package. Each project should have at least one key pair. For more
-information, see the section \emph{Add a key pair} on page
-\pageref{add-a-key-pair}.
+information, see the section \emph{Add a key pair}.  For general
+instructions on SSH keys, we refer to chapter 2 of
+\href{https://www.vscentrum.be/support/tut-book/vsc-tutorials}{the VSC
+  HPC tutorial}.
 
 \strong{Note:} In the VSC cloud, public keys you've uploaded to the
-VSC account portal are automatically available in OpenStack projects.
-Changes to your VSC account are reflected in the OpenStack environment
-within 20 minutes.
+VSC account portal are automatically available in OpenStack projects,
+so you don't have to create or import new keys.  Changes to your VSC
+account are reflected in the OpenStack environment within 20 minutes.
 
 If you have generated a key pair with an external tool, you can import
 it into \gls{OpenStack}. The key pair can be used for multiple
 instances that belong to a project. For more information, see the
-section {\emph{Import a key pair}} on page
-\pageref{import-a-key-pair}.  For general instructions on SSH keys, we
-refer to chapter 2 of
-\href{https://www.vscentrum.be/support/tut-book/vsc-tutorials}{the VSC
-  HPC tutorial}.
+section \emph{Import a key pair}.
 
 \strong{Note:} A key pair belongs to an individual user, not to a
 project. To share a key pair across multiple users, each user needs to
 import that key pair.
 
-\subsubsection{Add a key pair}\label{add-a-key-pair}
-Create at least one key pair for each project.
+\strong{Note:} This chapter only explains the required configuration
+in order to make your instance accessible via SSH.  For instructions
+on how to connect to a running instance, once it has been configured
+correctly, see page \pageref{connect-to-your-instance-using-ssh} of
+chapter \ref{cha:launch-manage-inst}.
 
+\subsubsection{Add a key pair}\label{add-a-key-pair}
 \begin{enumerate}
 \item Open the Compute tab.
 \item Click the Key Pairs tab, which shows the key pairs that are
@@ -90,11 +92,12 @@ until the instance is terminated.
 However, in addition to the fixed IP address, a floating IP address
 can also be attached to an instance.  Unlike fixed IP addresses,
 floating IP addresses can have their associations modified at any
-time, regardless of the state of the instances involved.  In the VSC
-cloud, floating IP's are public (accessible from the the Ugent login
-node \lstinline{login.hpc.ugent.be}).  In order to make your instance
-accessible from outside of the Openstack environment, you must attach
-a port connected to the VM network to such a public floating IP.
+time, regardless of the state of the instances involved.  In order to
+make your instance accessible from outside of the Openstack
+environment, you must attach a port connected to the VM network to
+such a public floating IP.  In the VSC cloud, floating IP's are
+accessible from the the Ugent login node
+\lstinline{login.hpc.ugent.be}.
 
 This procedure details the reservation of a floating IP address from
 an existing pool of addresses and the association of that address with
