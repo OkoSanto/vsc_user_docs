@@ -42,18 +42,6 @@ Create at least one key pair for each project.
 \item In the Create Key Pair dialog box, enter a name for your key
   pair, and click Create Key Pair.
 \item Respond to the prompt to download the key pair.
-  \end{enumerate}
-
-\subsubsection{Import a key pair}\label{import-a-key-pair}
-
-\begin{enumerate}
-\item Open the Compute tab.
-\item Click the Key Pairs tab, which shows the key pairs that are
-  available for this project.
-\item Click Import Key Pair.
-\item In the Import Key Pair dialog box, enter the name of your key
-  pair, copy the public key into the Public Key box, and then click
-  Import Key Pair.
 \item Save the \textbf{*.pem} file locally.
 \item To change its permissions so that only you can read and write to
   the file, run the following command:
@@ -76,6 +64,17 @@ Create at least one key pair for each project.
   \begin{prompt}
     %\shellcmd{ssh-add yourPrivateKey.pem}
   \end{prompt}
+\end{enumerate}
+
+\subsubsection{Import a key pair}\label{import-a-key-pair}
+\begin{enumerate}
+\item Open the Compute tab.
+\item Click the Key Pairs tab, which shows the key pairs that are
+  available for this project.
+\item Click Import Key Pair.
+\item In the Import Key Pair dialog box, enter the name of your key
+  pair, copy the public key into the Public Key box, and then click
+  Import Key Pair.
 \end{enumerate}
 
 The Compute database registers the public key of the key pair.
