@@ -1,0 +1,85 @@
+\chapter{Shared file systems using Manila}\label{cha:shared-file-systems}
+
+OpenStack's Manila service allows you to create and manage shared \gls{nfs} file systems for your virtual machines.  This service is not automatically enabled in the VSC cloud, so you should contact \cloudinfo if you want to use shared file systems in your project.
+
+\section*{Creating a Shared File System}\label{sec:creating-shared-file}
+Creating a shared file system using the Horizon interface is quite straightforward:
+\begin{enumerate}
+\item Open the Share tab, and click Shares.  A list of existing shares (if any) is shown.
+\item Click the \textbf{Create Share} button to open the following dialog:
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{img/create_share}
+  \end{center}
+  Fill out the following fields:
+  \begin{description}
+  \item[Share Name] Choose a name.
+  \item[Description] Optionally, add a description.
+  \item[Share Protocol] Use the default \gls{nfs} protocol.
+  \item[Size (GiB)] Set the size of the shared file system to be
+    created.  The total available storage and the amount currently
+    used are shown on the right.
+  \item[Share Type] Here, you must select ``cephfsnfstype'' (the only choice).
+  \item[Metadata] Here, you can attach additional metdata to your
+    shared file system, which can be queried later on.
+  \end{description}
+  Other fields are not mandatory.  By default, the shared file system
+  will only be visible within the current project (Visibility:
+  ``private'').  Be careful with the option ``Make visible for all':
+  enabling it will set the visibility of your shared file system to
+  ``public'', making it visible for any other project in the VSC cloud
+  as well.
+\item Click \textbf{Create} to complete this step.
+\end{enumerate}
+% https://docs.openstack.org/security-guide/shared-file-systems/share-acl.html
+
+At this point, the shared file system exists within OpenStack, but it cannot be used until we define access rules for it.
+
+\section*{Defining \gls{nfs} access rules}\label{sec:defin-nfs-access}
+Access rules define from which VM's a shared file system can be accessed.  By default, the shared file system cannot be accessed by anyone.
+
+%TODO screenshots?
+\begin{enumerate}
+\item Open the drop-down menu in the \textbf{Actions} column for your share, and click \textbf{Manage Rules}.
+\item You can now see all Share Rules for this shared file system.
+  For a newly created file system, the list will be empty.  Click \textbf{Add rule}.
+\item Fill out the \textbf{Add Rule} dialog:
+  \begin{description}
+  \item[Access Type] Only ``ip'' is supported.
+  \item[Access Level] Choose if you want to give read and write
+    (``rw'') or read-only (``ro'') permission with this rule.
+  \item[Access To] Here, you can specify an ip address, or an address range, to which the rule applies.  The addresses should be specified according to the format expected by an NFS exports configuration file.  A few examples, assuming the project's \_nfs network has the address range 10.10.x.0/24:
+
+    \begin{tabular}{>{\bfseries}lp{0.7\textwidth}}
+      10.10.x.13 & Matches this single ip address.
+      \\ \hline
+      0.0.0.0/0 & Matches any ip address.
+      \\ \hline
+      10.10.x.0/24 & Matches any ip address from the project's \_nfs network.  In practice, this has the same effect as the previous rule, because the shared file system can only be accessed from within the \_nfs network.
+      \\ \hline 
+      10.10.x.0/28 & Matches addresses 10.10.x.0 until 10.10.x.15.
+      \\
+    \end{tabular}
+
+  \end{description}
+  Click \textbf{Add} to add the rule.
+\end{enumerate}
+Your rule now appears in the list.  You can add as many rules as you wish to define access rules for different addresses or address ranges.
+
+\section*{Accessing a shared file system}\label{sec:access-shar-file}
+When the proper access rules for the shared file system are in place, you can access (mount) it from any VM matching those rules.  You can look up the network location of your file system using the Dashboard:
+\begin{enumerate}
+\item Open the Share tab and click Shares.  The list of all shared file systems in your project is shown.
+\item Click the name of the shared file system you wish to access.
+\item In the section ``Share Overview'', look for the item \textbf{Export locations}.
+\item Copy the content of the \textbf{Path:} field.
+\end{enumerate}
+
+Once you know the path of your shared file system, you can mount it on any VM with the appropriate access rights, e.g.\ for a shared file system with location 10.2.0.2:/volumes/\_nogroup/918...a78:
+
+\begin{prompt}
+  %\shellcmd{sudo mount 10.2.0.2:/volumes/\_nogroup/918..a78 /mnt}
+\end{prompt}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "intro-OpenStack"
+%%% End:
